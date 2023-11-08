@@ -25,7 +25,7 @@ class Create(models.Model):
     title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
 
     
-class Files(models.Model):
+class File(models.Model):
     name = models.CharField(primary_key=True, max_length=100)
     is_public = models.BooleanField()
     type = models.CharField(max_length=50)
