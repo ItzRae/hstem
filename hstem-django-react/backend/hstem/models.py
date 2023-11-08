@@ -26,11 +26,10 @@ class Create(models.Model):
 
     
 class Files(models.Model):
-    title = models.CharField(max_length=100, null=False)
     name = models.CharField(primary_key=True, max_length=100)
     is_public = models.BooleanField()
     type = models.CharField(max_length=50)
-    project = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
+    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
 
     def __str__(self):
         return (self.title, self.name, self.type)
