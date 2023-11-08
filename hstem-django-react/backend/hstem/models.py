@@ -21,8 +21,8 @@ class Project(models.Model):
     
 class Create(models.Model):
     date = models.DateField()
-    name = models.ForeignKey(Author, primary_key=True)
-    title = models.ForeignKey(Project, primary_key=True)
+    name = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING) # on delete no action
+    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
 
     
 class Files(models.Model):
@@ -34,14 +34,12 @@ class Files(models.Model):
     def __str__(self):
         return (self.title, self.name, self.type)
     
-class Department(models.model):
+class Department(models.Model):
     school = models.CharField(primary_key=True, max_length=100)
 
 class Sponsor(models.Model):
-    school = models.CharField(primary_key=True, max_length=100)
-    title = models.CharField(primary_key=True, max_length=100)
-    departments = models.ForeignKey(Department)
-    project = models.ForeignKey(Project)
+    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
+    school = models.ForeignKey(Department, primary_key=True, on_delete=models.DO_NOTHING) # on delete no action
 
     def __str__(self):
         return (self.school, self.title)
