@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from .services import get_all_rows
 
-def photo_wall(request):
-  photos = get_all_rows("Test sheet")
-  return render(request, 'photo_wall.html', {'photos': photos})
+def hstem(request):
+  names = get_all_rows("hstem test")
+  return render(request, 'hstem.html', {'names': names})
 
