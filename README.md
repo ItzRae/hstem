@@ -1,5 +1,8 @@
-# Being Human in STEM Database Project
+# Being Human in STEM
 
-This is a database project for the Being Human in STEM initiative at Amherst College.
+This is a Databases project for Being Human in STEM initiative at Amherst College.
 
-Contributors: Rachel, Nayeon, Hanaa, and Hewan
+* Authors: Hanaa Charania, Hewan Worku, Nayeon Shin, Rachel Lin
+* Tech stack:
+  - Front-end: React, TypeScript, Chakra UI, React Query (+ React Testing Library)
+  - Back-end: Django, Django REST Framework, SQL, PostgreSQL
