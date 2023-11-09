@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from hstem.services import initialize_gspread
+import django_extensions
 load_dotenv()
 
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hstem",
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
