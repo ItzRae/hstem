@@ -14,7 +14,20 @@ class Project(models.Model):
     description = models.CharField(max_length=1000)
     primary_theme = models.CharField(max_length=100)
     secondary_theme = models.CharField(max_length=100)
+    
+    # STUDENTS = 'Students'
+    # AUDIENCE_CHOICES = (
+    #     (STUDENTS, 'Students'),
+    # )
     audience = models.CharField(max_length=100)
+
+
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now=True)
+
+    
+
+
 
     def __str__(self):
         return self.title
