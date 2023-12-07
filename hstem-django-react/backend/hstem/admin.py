@@ -11,7 +11,7 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = ('name', 'major', 'year')
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'primary_theme', 'secondary_theme', 'audience')
+    list_display = ('title', 'description', 'primary_theme', 'secondary_theme', 'audience', 'link_to_file ', 'thumbnail_url')
 
 class CreateAdmin(admin.ModelAdmin):
     list_display = ('date', 'name', 'title')

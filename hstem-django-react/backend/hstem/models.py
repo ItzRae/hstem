@@ -14,6 +14,9 @@ class Project(models.Model):
     description = models.CharField(max_length=1000)
     primary_theme = models.CharField(max_length=100)
     secondary_theme = models.CharField(max_length=100)
+    link_to_file = models.CharField(max_length=500)
+    thumbnail_url = models.CharField(max_length=500)
+
     
     # STUDENTS = 'Students'
     # AUDIENCE_CHOICES = (
