@@ -30,6 +30,8 @@ class Migration(migrations.Migration):
                 ("description", models.CharField(max_length=1000)),
                 ("primary_theme", models.CharField(max_length=100)),
                 ("secondary_theme", models.CharField(max_length=100)),
+                ("link_to_url", models.CharField(max_length=500)),
+                ("thumbnail_url", models.CharField(max_length=500)),
                 ("audience", models.CharField(max_length=100)),
             ],
         ),

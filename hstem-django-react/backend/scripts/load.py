@@ -1,10 +1,9 @@
 import csv
 import os 
 from hstem.models import Author, Project, Create, File, Department, Sponsor
-import gdown
 
 def run():
-    file = open("/Users/rachellin/Desktop/hstemdb/hstem-django-react/backend/scripts/all_hstem_projects.csv", "r")
+    file = open("./scripts/all_hstem_projects.csv", "r")
     read_file = csv.reader(file)
 
     Author.objects.all().delete()
