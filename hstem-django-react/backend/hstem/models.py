@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Author(models.Model):
@@ -14,8 +15,6 @@ class Project(models.Model):
     description = models.CharField(max_length=1000)
     primary_theme = models.CharField(max_length=100)
     secondary_theme = models.CharField(max_length=100)
-    link_to_file = models.CharField(max_length=500)
-    thumbnail_url = models.CharField(max_length=500)
 
     
     # STUDENTS = 'Students'
@@ -36,28 +35,19 @@ class Project(models.Model):
         return self.title
     
 class Create(models.Model):
-    date = models.DateField()
     name = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING) # on delete no action
     title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
+    created_at = models.DateTimeField(default=timezone.now)
 
     
 class File(models.Model):
     name = models.CharField(primary_key=True, max_length=100)
-    is_public = models.BooleanField()
+    is_public = models.BooleanField(default=False)
     type = models.CharField(max_length=50)
-    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
+    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=False) # on delete no action
+    file = models.FileField(upload_to='files/', blank=False)
+    uploaded_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return (self.title, self.name, self.type)
     
-class Department(models.Model):
-    school = models.CharField(primary_key=True, max_length=100)
-
-class Sponsor(models.Model):
-    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
-    school = models.ForeignKey(Department, primary_key=True, on_delete=models.DO_NOTHING) # on delete no action
-
-    def __str__(self):
-        return (self.school, self.title)
-
-
