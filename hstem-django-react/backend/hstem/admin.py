@@ -14,7 +14,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'primary_theme', 'secondary_theme', 'audience')
 
 class CreateAdmin(admin.ModelAdmin):
-    list_display = ('name_id', 'title_id')
+    list_display = ('name', 'title')
 
 # class FileAdmin(admin.ModelAdmin):
 #     list_display = ('name', 'is_public', 'type', 'title', 'file')

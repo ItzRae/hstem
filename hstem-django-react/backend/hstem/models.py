@@ -31,10 +31,12 @@ class Project(models.Model):
         return self.title
     
 class Create(models.Model):
-    name_id = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING) # on delete no action
-    title_id = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
+    name = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING, db_column='name', default='Student') # on delete no action
+    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, db_column='title', default="A Project") # on delete no action
     created_at = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return (self.name, self.title)
     
 # class File(models.Model):
 #     name = models.CharField(primary_key=True, max_length=100)
