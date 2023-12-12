@@ -15,7 +15,7 @@ class Project(models.Model):
     description = models.CharField(max_length=1000)
     primary_theme = models.CharField(max_length=100)
     secondary_theme = models.CharField(max_length=100)
-
+    file = models.FileField(upload_to='files/', blank=False, null=True)
     
     # STUDENTS = 'Students'
     # AUDIENCE_CHOICES = (
@@ -27,27 +27,22 @@ class Project(models.Model):
     # created_at = models.DateTimeField(auto_now_add=True)
     # updated_at = models.DateTimeField(auto_now=True)
 
-    
-
-
-
     def __str__(self):
         return self.title
     
 class Create(models.Model):
-    name = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING) # on delete no action
-    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
+    name_id = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING) # on delete no action
+    title_id = models.ForeignKey(Project, on_delete=models.DO_NOTHING) # on delete no action
     created_at = models.DateTimeField(default=timezone.now)
 
     
-class File(models.Model):
-    name = models.CharField(primary_key=True, max_length=100)
-    is_public = models.BooleanField(default=False)
-    type = models.CharField(max_length=50)
-    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=False) # on delete no action
-    file = models.FileField(upload_to='files/', blank=False)
-    uploaded_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+# class File(models.Model):
+#     name = models.CharField(primary_key=True, max_length=100)
+#     is_public = models.BooleanField(default=False)
+#     type = models.CharField(max_length=50)
+#     title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=False) # on delete no action
+#     uploaded_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
-    def __str__(self):
-        return (self.title, self.name, self.type)
+#     def __str__(self):
+#         return (self.title, self.name, self.type)
     

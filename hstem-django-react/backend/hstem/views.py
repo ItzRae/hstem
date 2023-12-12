@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Author, Create, Project
-from .models import File
-from .forms import UploadFileForm
+# from .models import File
+# from .forms import UploadFileForm
 
 from django.shortcuts import render
 from .services import get_all_rows
@@ -24,17 +24,17 @@ def create_author_project_relation(request, name, title):
     # Return a response, for example, redirect to a new page or render a template
     return render(request, 'some_template.html', {'message': 'Relationship created'})
 
-def upload_and_display_files(request):
-    files = File.objects.all()
+# def upload_and_display_files(request):
+#     files = File.objects.all()
 
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            for file in request.FILES.getlist('files'):
-                File.objects.create(file=file)
-            return redirect('upload_and_display')
-    else:
-        form = UploadFileForm()
+#     if request.method == 'POST':
+#         form = UploadFileForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             for file in request.FILES.getlist('files'):
+#                 File.objects.create(file=file)
+#             return redirect('upload_and_display')
+#     else:
+#         form = UploadFileForm()
 
-    return render(request, 'upload_and_display.html', {'form': form, 'files': files})
+#     return render(request, 'upload_and_display.html', {'form': form, 'files': files})
 

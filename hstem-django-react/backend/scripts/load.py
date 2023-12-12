@@ -1,6 +1,6 @@
 import csv
 import os 
-from hstem.models import Author, Project, Create, File
+from hstem.models import Author, Project, Create
 from django.utils import timezone
 
 def run():
@@ -9,8 +9,9 @@ def run():
 
     Author.objects.all().delete()
     Project.objects.all().delete()
+    Create.objects.all().delete()
     # Department.objects.all().delete()
-    File.objects.all().delete()
+    # File.objects.all().delete()
 
 
     for row in read_file:
