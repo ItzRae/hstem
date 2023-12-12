@@ -15,7 +15,6 @@ class Project(models.Model):
     description = models.CharField(max_length=1000)
     primary_theme = models.CharField(max_length=100)
     secondary_theme = models.CharField(max_length=100)
-    file = models.FileField(upload_to='files/', blank=False, null=True)
     
     # STUDENTS = 'Students'
     # AUDIENCE_CHOICES = (
@@ -36,15 +35,17 @@ class Create(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return (self.name, self.title)
+        return (self.name, self.title, self.created_at)
     
-# class File(models.Model):
-#     name = models.CharField(primary_key=True, max_length=100)
-#     is_public = models.BooleanField(default=False)
-#     type = models.CharField(max_length=50)
-#     title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=False) # on delete no action
-#     uploaded_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+class File(models.Model):
+    name = models.CharField(primary_key=True, max_length=100, db_column='name')
+    is_public = models.BooleanField(default=False)
+    type = models.CharField(max_length=50)
+    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=False, db_column='title') # on delete no action
+    uploaded_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    file = models.FileField(upload_to='files/', blank=False, null=True)
 
-#     def __str__(self):
-#         return (self.title, self.name, self.type)
+
+    def __str__(self):
+        return (self.title, self.name, self.type)
     
