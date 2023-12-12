@@ -72,8 +72,6 @@ export default function Search() {
           />
         ))}
       </SimpleGrid>
-
-      {/* Modal */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} size="3xl">
         <ModalOverlay />
         <ModalContent>
