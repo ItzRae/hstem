@@ -24,3 +24,16 @@ class Project(models.Model):
 
     class Meta:
         db_table = "hstem_project"
+
+
+class File(models.Model):
+    # "name", "is_public", "extension", "uploaded_at", "file", "title"
+    name = models.CharField(max_length=100, primary_key=True)
+    is_public = models.BooleanField()
+    type = models.CharField(max_length=50)  # TODO: Rename
+    uploaded_at = models.DateTimeField()
+    file = models.CharField(max_length=255)  # TODO: Rename
+    title = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = "hstem_file"

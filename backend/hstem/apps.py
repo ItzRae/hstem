@@ -14,3 +14,8 @@ class CreatesConfig(AppConfig):
 class ProjectConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "project"
+
+
+class FileConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "file"
