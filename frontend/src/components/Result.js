@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, Image, Text, Button } from "@chakra-ui/react";
+import { Box, Image, Text, Button, Stack } from "@chakra-ui/react";
 
 const Result = ({ data, onOpenClick }) => {
-  const { imageUrl, name, major, date } = data;
+  const { imageUrl, title, date } = data;
 
   return (
     <Box
@@ -12,21 +12,17 @@ const Result = ({ data, onOpenClick }) => {
       overflow="hidden"
       boxShadow="lg"
     >
-      <Image src={imageUrl} alt={name} objectFit="cover" h="200px" />
-      <Box p="4">
-        <Text fontSize="xl" fontWeight="bold" mb="2">
-          {name}
+      <Image src={imageUrl} alt={title} objectFit="cover" h="200px" />
+      {/* TODO: vertical alignment, replace with Box */}
+      <Stack spacing="2" p="4">
+        <Text fontSize="lg" fontWeight="bold">
+          {title}
         </Text>
-        <Text color="gray.600" mb="2">
-          {major}
-        </Text>
-        <Text color="gray.600" mb="2">
-          On {date}
-        </Text>
+        <Text color="gray.600">On {date}</Text>
         <Button colorScheme="purple" onClick={onOpenClick}>
           Open
         </Button>
-      </Box>
+      </Stack>
     </Box>
   );
 };
