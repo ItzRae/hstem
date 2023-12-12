@@ -22,7 +22,6 @@ export default function Search() {
         data.forEach((project) => {
           project.imageUrl = "https://placekitten.com/300/200";
           project.date = faker.date.past().toLocaleDateString();
-          project.extension = faker.system.commonFileExt();
         });
         setProjects(data);
       })
@@ -32,10 +31,8 @@ export default function Search() {
   }, []);
 
   // Filter projects based on the search query
-  const searchedProjecs = projects.filter(
-    (project) =>
-      project.name.toLowerCase().includes(query.toLowerCase()) ||
-      project.extension === query.toLowerCase()
+  const searchedProjecs = projects.filter((project) =>
+    project.name.toLowerCase().includes(query.toLowerCase())
   );
 
   const handleSearch = (searchQuery) => {

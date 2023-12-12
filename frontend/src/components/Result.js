@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Image, Text, Button } from "@chakra-ui/react";
 
 const Result = ({ data, onOpenClick }) => {
-  const { imageUrl, name, major, date, extension } = data;
+  const { imageUrl, name, major, date } = data;
 
   return (
     <Box
@@ -23,7 +23,6 @@ const Result = ({ data, onOpenClick }) => {
         <Text color="gray.600" mb="2">
           On {date}
         </Text>
-        <Text mb="2">{extension}</Text>
         <Button colorScheme="purple" onClick={onOpenClick}>
           Open
         </Button>
