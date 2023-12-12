@@ -43,7 +43,8 @@ SYSTEM_APPS = [
 ]
 CUSTOM_APPS = [
     "author",
-    "creates"
+    "creates",
+    "project"
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
