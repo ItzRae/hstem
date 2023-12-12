@@ -32,11 +32,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-CUSTOM_APPS = [
-    "hstem_author",
-    "projects",
-]
-INSTALLED_APPS = [
+SYSTEM_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -44,7 +40,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "corsheaders"
-] + CUSTOM_APPS
+]
+CUSTOM_APPS = [
+    "hstem_author",
+    "projects",
+]
+
+INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
 
 DJANGO_MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -62,7 +64,7 @@ REACT_MIDDLEWARE = [
 
 MIDDLEWARE = DJANGO_MIDDLEWARE + REACT_MIDDLEWARE
 
-ROOT_URLCONF = "backend.urls"
+ROOT_URLCONF = "urls"
 
 TEMPLATES = [
     {
@@ -80,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "backend.wsgi.application"
+WSGI_APPLICATION = "wsgi.application"
 
 
 # Database
