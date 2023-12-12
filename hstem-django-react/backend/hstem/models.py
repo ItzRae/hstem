@@ -40,12 +40,18 @@ class Create(models.Model):
 class File(models.Model):
     name = models.CharField(primary_key=True, max_length=100, db_column='name')
     is_public = models.BooleanField(default=False)
-    type = models.CharField(max_length=50)
+
+    class FileType(models.TextChoices):
+        IMAGE = 'img','Image'
+        VIDEO = 'vid', 'Video'
+        PDF = 'pdf', 'PDF'
+        PPT = 'ppt', 'Powerpoint'
+        OTHER = 'other','Other'
+    
+    type = models.CharField(max_length=50, choices=FileType.choices, default=FileType.OTHER)
     title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, blank=False, db_column='title') # on delete no action
     uploaded_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     file = models.FileField(upload_to='files/', blank=False, null=True)
 
 
-    def __str__(self):
-        return (self.title, self.name, self.type)
     
