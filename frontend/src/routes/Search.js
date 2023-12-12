@@ -1,10 +1,11 @@
-import { Container, SimpleGrid } from "@chakra-ui/react";
+import { Container, Flex, SimpleGrid } from "@chakra-ui/react";
 import axios from "axios";
 import { nanoid } from "nanoid";
 import { faker } from '@faker-js/faker';
 import React, { useEffect, useState } from "react";
 import Result from "../components/Result";
 import SearchBar from "../components/SearchBar";
+import FilterPanel from "../components/FilterPanel";
 
 const handleOpenClick = () => {
   console.log("Open button clicked!");
@@ -32,7 +33,7 @@ export default function Search() {
   }, []);
 
   // Filter projects based on the search query
-  const filteredProjects = projects.filter(
+  const searchedProjecs = projects.filter(
     (project) =>
       project.name.toLowerCase().includes(query.toLowerCase()) ||
       project.extension === query.toLowerCase()
@@ -45,15 +46,16 @@ export default function Search() {
   return (
     <Container maxW="container.lg" py="8">
       <SearchBar onSearch={handleSearch} />
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing="4">
-        {filteredProjects.map((project) => (
-          <Result
-            key={nanoid()}
-            data={project}
-            onOpenClick={() => handleOpenClick(project.id)}
-          />
-        ))}
-      </SimpleGrid>
+        <SimpleGrid columns={[1, 2, 3, 4]} spacing="4" ml="4">
+        <FilterPanel projects={projects} />
+          {searchedProjecs.map((project) => (
+            <Result
+              key={nanoid()}
+              data={project}
+              onOpenClick={() => handleOpenClick(project.id)}
+            />
+          ))}
+        </SimpleGrid>
     </Container>
   );
 }
