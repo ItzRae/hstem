@@ -42,7 +42,7 @@ SYSTEM_APPS = [
     "corsheaders"
 ]
 CUSTOM_APPS = [
-    "author",
+    "hstem"
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
