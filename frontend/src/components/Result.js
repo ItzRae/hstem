@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Image, Text, Button } from "@chakra-ui/react";
 
 const Result = ({ data, onOpenClick }) => {
-  const { imageUrl, name, major, date } = data;
+  const { imageUrl, title, date } = data;
 
   return (
     <Box
@@ -11,21 +11,26 @@ const Result = ({ data, onOpenClick }) => {
       borderRadius="lg"
       overflow="hidden"
       boxShadow="lg"
+      display="flex"
+      flexDirection="column"
     >
-      <Image src={imageUrl} alt={name} objectFit="cover" h="200px" />
-      <Box p="4">
-        <Text fontSize="xl" fontWeight="bold" mb="2">
-          {name}
+      <Image src={imageUrl} alt={title} objectFit="cover" h="200px" />
+      <Box
+        p="4"
+        display="flex"
+        flexDirection="column"
+        flex="1"
+        justifyContent="space-between"
+      >
+        <Text fontSize="lg" fontWeight="bold">
+          {title}
         </Text>
-        <Text color="gray.600" mb="2">
-          {major}
-        </Text>
-        <Text color="gray.600" mb="2">
-          On {date}
-        </Text>
-        <Button colorScheme="purple" onClick={onOpenClick}>
-          Open
-        </Button>
+        <Box>
+          <Text color="gray.600" mb="1">On {date}</Text>
+          <Button colorScheme="purple" onClick={onOpenClick}>
+            Open
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
