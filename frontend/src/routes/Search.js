@@ -17,7 +17,7 @@ export default function Search() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/hstem_authors/")
+      .get("http://localhost:8000/api/authors/")
       .then((response) => {
         const data = response.data;
         data.forEach((project) => {
