@@ -9,7 +9,6 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalFooter,
-  Button,
   Text,
   ModalHeader,
   ModalOverlay,
@@ -43,9 +42,9 @@ export default function Search() {
       .get("http://localhost:8000/api/projects/")
       .then((response) => {
         const data = response.data;
-        data.forEach((project) => {
+        data.forEach((project, index) => {
           project.id = nanoid();
-          project.imageUrl = "https://placekitten.com/300/200";
+          project.imageUrl = `https://picsum.photos/id/${index}/200/300/`;
           project.date = faker.date.past().toLocaleDateString();
         });
         setProjects(data);
@@ -96,11 +95,9 @@ export default function Search() {
 
   return (
     <Container maxW="container.lg" py="8">
-      <Flex flexWrap="wrap">
-        <Box w={{ base: "100%", md: "20%" }} pr={{ base: "0", md: "4" }}>
-          <SearchBar onSearch={handleSearch} />
-        </Box>
-        <Box w={{ base: "100%", md: "80%" }}>
+      <Flex direction={"column"} flexWrap="wrap">
+        <SearchBar onSearch={handleSearch} />
+        <Box>
           <SimpleGrid columns={[1, 2, 3, 4]} spacing="4">
             {searchedProjects.map((project) => (
               <Result

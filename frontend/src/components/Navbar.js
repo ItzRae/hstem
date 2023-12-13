@@ -1,7 +1,9 @@
 import React from "react";
+import { chakra } from "@chakra-ui/system";
 import { Link } from "react-router-dom";
-import { Box, Flex, Spacer, Heading, Text } from "@chakra-ui/react";
-import SearchBar from "./SearchBar";
+import { Box, Flex, Spacer, Heading } from "@chakra-ui/react";
+
+const ChakraLink = chakra(Link);
 
 const Navbar = ({ onSearch }) => {
   return (
@@ -12,10 +14,12 @@ const Navbar = ({ onSearch }) => {
         </Heading>
         <Spacer />
         <Box>
-          <Link to="/" mr="4">
+        <ChakraLink to="/" ml="4" color="white">
             Home
-          </Link>
-          <Link to="/admin">Admin</Link>
+          </ChakraLink>
+          <ChakraLink to="/admin" ml="4" color="white">
+            Admin
+          </ChakraLink>
         </Box>
       </Flex>
     </Box>
