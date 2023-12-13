@@ -1,21 +1,22 @@
 import {
+  Box,
+  Button,
   Container,
   Flex,
   SimpleGrid,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
   ModalBody,
+  ModalCloseButton,
+  ModalContent,
   ModalFooter,
   Button,
   Text,
-  Box
+  ModalHeader,
+  ModalOverlay,
 } from "@chakra-ui/react";
+import { faker } from "@faker-js/faker";
 import axios from "axios";
 import { nanoid } from "nanoid";
-import { faker } from "@faker-js/faker";
 import React, { useEffect, useState } from "react";
 import Result from "../components/Result";
 import SearchBar from "../components/SearchBar";
@@ -35,7 +36,7 @@ export default function Search() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authorDetails, setAuthorDetails] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState("");
+  const [fileMetaData, setFileMetaData] = useState("");
 
   useEffect(() => {
     axios
@@ -74,9 +75,14 @@ export default function Search() {
       .get(`http://localhost:8000/api/details/${encodedTitle}/`)
       .then((response) => {
         console.log(response.data);
-        const { creates: { author }, file } = response.data;
+        const {
+          creates: { author },
+          file: { file },
+          project: { description },
+        } = response.data;
         setAuthorDetails(author);
-        setPreviewUrl(file.file);
+        setFileMetaData({ file, description });
+        console.log(fileMetaData);
       })
       .catch((error) => {
         console.error("Error fetching author details:", error);
@@ -112,14 +118,17 @@ export default function Search() {
           <ModalHeader>{selectedProject?.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Date: {selectedProject?.date}</Text>
-            <Text>Author: {authorDetails?.name}</Text>
-            <Text>Major(s): {authorDetails?.major}</Text>
-            <Text>Year: {authorDetails?.year}</Text>
-            {previewUrl && isValidURL(previewUrl) && (
+            <Box>
+              <Text>Date: {selectedProject?.date}</Text>
+              <Text>Author: {authorDetails?.name}</Text>
+              <Text>Major(s): {authorDetails?.major}</Text>
+              <Text>Year: {authorDetails?.year}</Text>
+              <Text>Description: {fileMetaData.description}</Text>
+            </Box>
+            {fileMetaData.file && isValidURL(fileMetaData.file) && (
               <iframe
                 title="Google Drive File"
-                src={previewUrl}
+                src={fileMetaData.file}
                 width="100%"
                 height="500px"
               />
