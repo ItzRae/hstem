@@ -20,6 +20,9 @@ const Navbar = ({ onSearch }) => {
           <ChakraLink to="/admin" ml="4" color="white">
             Admin
           </ChakraLink>
+          <ChakraLink to="/project" ml="4" color="white">
+            Create Project
+          </ChakraLink>
         </Box>
       </Flex>
     </Box>

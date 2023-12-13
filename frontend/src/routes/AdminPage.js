@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useTable } from "react-table";
 import axios from "axios";
 import {
   Box,
   Container,
-  TableContainer,
-  Text,
   Table,
+  Thead,
   Tbody,
   Tr,
+  Th,
   Td,
 } from "@chakra-ui/react";
 
@@ -26,56 +25,25 @@ export default function AdminPage() {
       });
   }, []);
 
-  // Commented-out columns for future use
-  // const columns = React.useMemo(
-  //   () => [
-  //     {
-  //       Header: "Project",
-  //       accessor: "project", // Replace 'project' with the actual field name from your API
-  //     },
-  //   ],
-  //   []
-  // );
-
   return (
-    <Container maxW="container.xl">
+    <Container maxW="container.xl" py={8}>
       <Box overflowX="auto">
-        <TableContainer>
-          <Table variant="simple">
-            <Tbody>
-              {projects.map((project) => (
-                <Tr key={project.id}>
-                  <Td>{project.title}</Td>
-                  <Td>{project.description}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
-        {/* Uncomment the following code if you want to use react-table */}
-        {/* <table style={{ width: '100%', marginTop: '20px' }}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                ))}
-              </tr>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Project Title</Th>
+              <Th>Description</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {projects.map((project) => (
+              <Tr key={project.id}>
+                <Td>{project.title}</Td>
+                <Td>{project.description}</Td>
+              </Tr>
             ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
+          </Tbody>
+        </Table>
       </Box>
     </Container>
   );

@@ -3,6 +3,7 @@ import { CSSReset, ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Search from "./routes/Search";
+import ProjectForm from "./components/ProjectForm";
 import AdminPage from "./routes/AdminPage";
 
 const App = () => {
@@ -19,6 +20,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Search/>} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/project" element={<ProjectForm/>} />
+
         </Routes>
       </Router>
     </ChakraProvider>
