@@ -2,15 +2,17 @@ import {
   Box,
   Button,
   Container,
+  Flex,
+  SimpleGrid,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
+  Button,
+  Text,
   ModalHeader,
   ModalOverlay,
-  SimpleGrid,
-  Text,
 } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 import axios from "axios";
@@ -41,9 +43,9 @@ export default function Search() {
       .get("http://localhost:8000/api/projects/")
       .then((response) => {
         const data = response.data;
-        data.forEach((project, index) => {
+        data.forEach((project) => {
           project.id = nanoid();
-          project.imageUrl = `https://picsum.photos/id/${index}/200/300/`;
+          project.imageUrl = "https://placekitten.com/300/200";
           project.date = faker.date.past().toLocaleDateString();
         });
         setProjects(data);
@@ -94,16 +96,22 @@ export default function Search() {
 
   return (
     <Container maxW="container.lg" py="8">
-      <SearchBar onSearch={handleSearch} />
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing="4">
-        {searchedProjects.map((project) => (
-          <Result
-            key={nanoid()}
-            data={project}
-            onOpenClick={() => handleOpenClick(project.id)}
-          />
-        ))}
-      </SimpleGrid>
+      <Flex flexWrap="wrap">
+        <Box w={{ base: "100%", md: "20%" }} pr={{ base: "0", md: "4" }}>
+          <SearchBar onSearch={handleSearch} />
+        </Box>
+        <Box w={{ base: "100%", md: "80%" }}>
+          <SimpleGrid columns={[1, 2, 3, 4]} spacing="4">
+            {searchedProjects.map((project) => (
+              <Result
+                key={nanoid()}
+                data={project}
+                onOpenClick={() => handleOpenClick(project.id)}
+              />
+            ))}
+          </SimpleGrid>
+        </Box>
+      </Flex>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} size="3xl">
         <ModalOverlay />
         <ModalContent>
