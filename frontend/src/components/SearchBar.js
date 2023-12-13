@@ -22,7 +22,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <Box mb="4" p="4" bg="gray.200">
+    <Box mb="4">
       <InputGroup>
         <InputLeftElement pointerEvents="none">
           <SearchIcon color="gray.500" />
