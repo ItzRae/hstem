@@ -18,7 +18,7 @@ const App = () => {
         <Navbar onSearch={handleSearch} />
         <Routes>
           <Route path="/" element={<Search/>} />
-          <Route path="/admin" element={AdminPage} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Router>
     </ChakraProvider>
