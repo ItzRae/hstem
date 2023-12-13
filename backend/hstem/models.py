@@ -10,20 +10,20 @@ class Author(models.Model):
         db_table = "hstem_author"
 
 
-class Creates(models.Model):
-    name = models.CharField(max_length=100, primary_key=True)
-    title = models.CharField(max_length=100)
-    created_at = models.DateTimeField()
-
-    class Meta:
-        db_table = "hstem_create"
-
-
 class Project(models.Model):
     title = models.CharField(primary_key=True, max_length=255)
 
     class Meta:
         db_table = "hstem_project"
+
+
+class Creates(models.Model):
+    name = models.ForeignKey(Author, primary_key=True, on_delete=models.CASCADE, db_column="name")
+    title = models.ForeignKey(Project, on_delete=models.CASCADE, db_column="title")
+    created_at = models.DateTimeField()
+
+    class Meta:
+        db_table = "hstem_create"
 
 
 class File(models.Model):

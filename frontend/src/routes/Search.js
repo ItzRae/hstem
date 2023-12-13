@@ -70,8 +70,9 @@ export default function Search() {
     axios
       .get(`http://localhost:8000/api/details/${encodedTitle}/`)
       .then((response) => {
-        const { creates, file } = response.data;
-        setAuthorDetails(creates);
+        console.log(response.data);
+        const { creates: {author}, file } = response.data;
+        setAuthorDetails(author);
         setPreviewUrl(file.file);
       })
       .catch((error) => {

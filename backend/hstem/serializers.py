@@ -9,9 +9,11 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class CreatesSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer(source="name", read_only=True)
+
     class Meta:
         model = Creates
-        fields = ["name", "title", "created_at"]
+        fields = ["author"]
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -23,11 +25,4 @@ class ProjectSerializer(serializers.ModelSerializer):
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = [
-            "name",
-            "is_public",
-            "type",
-            "uploaded_at",
-            "file",
-            "title"
-        ]
+        fields = ["is_public", "type", "file"]
