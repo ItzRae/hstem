@@ -22,6 +22,7 @@ export default function Search() {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [authorDetails, setAuthorDetails] = useState(null);
 
   useEffect(() => {
     axios
@@ -53,6 +54,17 @@ export default function Search() {
     const project = projects.find((project) => project.id === projectId);
     setSelectedProject(project);
     setIsModalOpen(true);
+
+    // Fetch additional details based on the selected project's title
+    const encodedTitle = encodeURIComponent(project.title);
+    axios
+      .get(`http://localhost:8000/api/creates/${encodedTitle}/`)
+      .then((response) => {
+        setAuthorDetails(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching author details:", error);
+      });
   };
 
   const handleCloseModal = () => {
@@ -79,14 +91,25 @@ export default function Search() {
           <ModalCloseButton />
           <ModalBody>
             <p>Date: {selectedProject?.date}</p>
-            {selectedProject?.googleDriveLink && (
+            {/* <p>Date: {selectedProject?.date}</p> */}
+            <p>Author: {authorDetails?.name}</p>
+            <p>Major: {authorDetails?.major}</p>
+            <p>Year: {authorDetails?.year}</p>
+            {/* {selectedProject?.googleDriveLink && (
               <iframe
                 title="Google Drive File"
                 src={selectedProject.googleDriveLink}
                 width="100%"
                 height="500px"
               />
-            )}
+            )} */}
+            {/* TODO: replace */}
+            <iframe
+              title="Google Drive File"
+              src="https://docs.google.com/document/d/1ehg422W2QJmHjjtlLHlEUF89ctRSuCNeNe4tR98O98k/preview"
+              width="100%"
+              height="500px"
+            />
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="purple" mr={3} onClick={handleCloseModal}>

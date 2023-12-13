@@ -27,7 +27,6 @@ class Project(models.Model):
 
 
 class File(models.Model):
-    # "name", "is_public", "extension", "uploaded_at", "file", "title"
     name = models.CharField(max_length=100, primary_key=True)
     is_public = models.BooleanField()
     type = models.CharField(max_length=50)  # TODO: Rename

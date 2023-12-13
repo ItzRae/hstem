@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from hstem.views import CreatesDetailView
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("hstem.urls")),
+    path("api/creates/<str:title>/", CreatesDetailView.as_view(), name="creates_detail"),
 ]
