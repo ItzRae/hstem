@@ -26,10 +26,13 @@ class CreatesDetailView(APIView):
         creates_serializer = CreatesSerializer(creates)
         files = get_object_or_404(File, title=decoded_title)
         file_serializer = FileSerializer(files)
+        projects = get_object_or_404(Project, title=decoded_title)
+        project_serializer = ProjectSerializer(projects)
 
         response_data = {
             'creates': creates_serializer.data,
-            'file': file_serializer.data
+            'file': file_serializer.data,
+            'project': project_serializer.data
         }
 
         return Response(response_data)

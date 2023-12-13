@@ -19,7 +19,7 @@ class CreatesSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ["title"]
+        fields = ["title", "description"]
 
 
 class FileSerializer(serializers.ModelSerializer):
