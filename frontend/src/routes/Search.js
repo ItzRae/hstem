@@ -17,12 +17,22 @@ import React, { useEffect, useState } from "react";
 import Result from "../components/Result";
 import SearchBar from "../components/SearchBar";
 
+function isValidURL(str) {
+  try {
+    new URL(str);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 export default function Search() {
   const [query, setQuery] = useState("");
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authorDetails, setAuthorDetails] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState("");
 
   useEffect(() => {
     axios
@@ -58,9 +68,11 @@ export default function Search() {
     // Fetch additional details based on the selected project's title
     const encodedTitle = encodeURIComponent(project.title);
     axios
-      .get(`http://localhost:8000/api/creates/${encodedTitle}/`)
+      .get(`http://localhost:8000/api/details/${encodedTitle}/`)
       .then((response) => {
-        setAuthorDetails(response.data);
+        const { creates, file } = response.data;
+        setAuthorDetails(creates);
+        setPreviewUrl(file.file);
       })
       .catch((error) => {
         console.error("Error fetching author details:", error);
@@ -91,25 +103,17 @@ export default function Search() {
           <ModalCloseButton />
           <ModalBody>
             <p>Date: {selectedProject?.date}</p>
-            {/* <p>Date: {selectedProject?.date}</p> */}
             <p>Author: {authorDetails?.name}</p>
             <p>Major: {authorDetails?.major}</p>
             <p>Year: {authorDetails?.year}</p>
-            {/* {selectedProject?.googleDriveLink && (
+            {previewUrl && isValidURL(previewUrl) && (
               <iframe
                 title="Google Drive File"
-                src={selectedProject.googleDriveLink}
+                src={previewUrl}
                 width="100%"
                 height="500px"
               />
-            )} */}
-            {/* TODO: replace */}
-            <iframe
-              title="Google Drive File"
-              src="https://docs.google.com/document/d/1ehg422W2QJmHjjtlLHlEUF89ctRSuCNeNe4tR98O98k/preview"
-              width="100%"
-              height="500px"
-            />
+            )}
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="purple" mr={3} onClick={handleCloseModal}>

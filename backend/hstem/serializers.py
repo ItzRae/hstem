@@ -26,8 +26,8 @@ class FileSerializer(serializers.ModelSerializer):
         fields = [
             "name",
             "is_public",
-            "type_",
+            "type",
             "uploaded_at",
-            "file_path",
+            "file",
             "title"
         ]

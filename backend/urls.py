@@ -22,5 +22,5 @@ from hstem.views import CreatesDetailView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("hstem.urls")),
-    path("api/creates/<str:title>/", CreatesDetailView.as_view(), name="creates_detail"),
+    path("api/details/<str:title>/", CreatesDetailView.as_view()),
 ]
