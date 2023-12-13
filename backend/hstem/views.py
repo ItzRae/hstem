@@ -5,6 +5,8 @@ from .models import Author, Creates, Project, File
 from .serializers import AuthorSerializer, CreatesSerializer, ProjectSerializer, FileSerializer
 from urllib.parse import unquote
 from django.shortcuts import get_object_or_404
+from rest_framework import viewsets
+
 
 
 class AuthorList(generics.ListAPIView):
@@ -17,6 +19,8 @@ class CreatesList(generics.ListAPIView):
     # SQL Query: SELECT * FROM hstem_creates;
     queryset = Creates.objects.all()
     serializer_class = CreatesSerializer
+
+    
 
 
 class CreatesDetailView(APIView):
@@ -48,3 +52,10 @@ class ProjectList(generics.ListAPIView):
     # SQL Query: SELECT * FROM hstem_project;
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+class FileList(generics.ListAPIView):
+    # SQL Query: SELECT * FROM hstem_file;
+    queryset = File.objects.all()
+    serializer_class = FileSerializer
+
+

@@ -13,6 +13,9 @@ class Author(models.Model):
 class Project(models.Model):
     title = models.CharField(primary_key=True, max_length=255)
     description = models.CharField(max_length=500)
+    cohort = models.CharField(max_length=255)
+    audience = models.CharField(max_length=255)
+
 
     class Meta:
         db_table = "hstem_project"

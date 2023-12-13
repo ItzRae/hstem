@@ -13,16 +13,16 @@ class CreatesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Creates
-        fields = ["author"]
+        fields = ["author", "title"]
 
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ["title", "description"]
+        fields = ["title", "description", "cohort", "audience"]
 
 
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = ["is_public", "type", "file"]
+        fields = ["name", "title", "is_public", "type", "file"]
