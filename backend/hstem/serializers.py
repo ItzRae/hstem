@@ -16,7 +16,7 @@ class CreatesSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Creates
+        model = Project
         fields = ["title"]
 
 
