@@ -7,7 +7,21 @@ from urllib.parse import unquote
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
+from .models import Project
+from .serializers import ProjectSerializer
+
+@api_view(['POST'])
+def create_project(request):
+    if request.method == 'POST':
+        serializer = ProjectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AuthorList(generics.ListAPIView):
     # SQL Query: SELECT * FROM hstem_author;
@@ -54,7 +68,7 @@ class ProjectList(generics.ListAPIView):
     serializer_class = ProjectSerializer
 
 class FileList(generics.ListAPIView):
-    # SQL Query: SELECT * FROM hstem_file;
+    # SQL Query: SELECT * FROM hstem_files;
     queryset = File.objects.all()
     serializer_class = FileSerializer
 

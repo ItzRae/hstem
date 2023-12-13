@@ -7,5 +7,5 @@ urlpatterns = [
     path("details/", CreatesList.as_view(), name="creates_list"),
     path("projects/", ProjectList.as_view(), name="project_list"),
     path("files/", FileList.as_view(), name="file_list"),
-
+    
 ]

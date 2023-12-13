@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from hstem.views import CreatesDetailView, AuthorList, CreatesList, ProjectList
+from hstem.views import CreatesDetailView, AuthorList, CreatesList, ProjectList, create_project
 
 urlpatterns = [
     path("", ProjectList.as_view()),
     path("admin/", admin.site.urls),
     path("api/", include("hstem.urls")),
+    path('api/addData/', create_project, name='create_project'),
+
 ]
