@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Text
 } from "@chakra-ui/react";
 import axios from "axios";
 import { nanoid } from "nanoid";
@@ -103,10 +104,10 @@ export default function Search() {
           <ModalHeader>{selectedProject?.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p>Date: {selectedProject?.date}</p>
-            <p>Author: {authorDetails?.name}</p>
-            <p>Major: {authorDetails?.major}</p>
-            <p>Year: {authorDetails?.year}</p>
+            <Text>Date: {selectedProject?.date}</Text>
+            <Text>Author: {authorDetails?.name}</Text>
+            <Text>Major(s): {authorDetails?.major}</Text>
+            <Text>Year: {authorDetails?.year}</Text>
             {previewUrl && isValidURL(previewUrl) && (
               <iframe
                 title="Google Drive File"
