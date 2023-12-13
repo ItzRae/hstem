@@ -19,7 +19,8 @@ const App = () => {
         <Navbar onSearch={handleSearch} />
         <Routes>
           <Route path="/" element={<Search/>} />
-          <Route path="/admin" element={<ProjectForm/>} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/project" element={<ProjectForm/>} />
         </Routes>
       </Router>
     </ChakraProvider>
