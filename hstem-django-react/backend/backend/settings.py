@@ -85,7 +85,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'hstemdb',
         'USER': 'postgres',
         'PASSWORD': 'hstem',
         'HOST': 'cosc-257-node02.cs.amherst.edu',

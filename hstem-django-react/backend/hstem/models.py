@@ -12,15 +12,20 @@ class Author(models.Model):
     
 class Project(models.Model):
     title = models.CharField(primary_key=True, max_length=100)
-    description = models.CharField(max_length=1000)
-    primary_theme = models.CharField(max_length=100)
-    secondary_theme = models.CharField(max_length=100)
+    description = models.CharField(max_length=5000)
+    cohort = models.CharField(max_length=100)
     
     # STUDENTS = 'Students'
     # AUDIENCE_CHOICES = (
     #     (STUDENTS, 'Students'),
     # )
-    audience = models.CharField(max_length=100)
+
+    class Audience(models.TextChoices):
+        STUDENTS = 'students', 'Students'
+        FACULTY = 'faculty', 'Faculty'
+        FIVE_C = '5c', '5C'
+        OTHER = 'other', 'Other'
+    audience = models.CharField(max_length=100, choices=Audience.choices, default=Audience.STUDENTS)
 
 
     # created_at = models.DateTimeField(auto_now_add=True)
@@ -30,8 +35,8 @@ class Project(models.Model):
         return self.title
     
 class Create(models.Model):
-    name = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING, db_column='name', default='Student') # on delete no action
-    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, db_column='title', default="A Project") # on delete no action
+    title = models.ForeignKey(Project, on_delete=models.DO_NOTHING, db_column='title') # on delete no action
+    name = models.ForeignKey(Author, primary_key=True, on_delete=models.DO_NOTHING, db_column='name') # on delete no action
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -39,11 +44,12 @@ class Create(models.Model):
     
 class File(models.Model):
     name = models.CharField(primary_key=True, max_length=100, db_column='name')
-    is_public = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=True)
 
     class FileType(models.TextChoices):
         IMAGE = 'img','Image'
-        VIDEO = 'vid', 'Video'
+        VIDEO = 'mp3', 'Video'
+        AUDIO = 'mp4', 'Audio'
         PDF = 'pdf', 'PDF'
         PPT = 'ppt', 'Powerpoint'
         OTHER = 'other','Other'
