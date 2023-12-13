@@ -40,9 +40,9 @@ export default function Search() {
       .get("http://localhost:8000/api/projects/")
       .then((response) => {
         const data = response.data;
-        data.forEach((project) => {
+        data.forEach((project, index) => {
           project.id = nanoid();
-          project.imageUrl = "https://placekitten.com/300/200";
+          project.imageUrl = `https://picsum.photos/id/${index}/200/300/`;
           project.date = faker.date.past().toLocaleDateString();
         });
         setProjects(data);
