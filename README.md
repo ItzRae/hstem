@@ -9,7 +9,7 @@ This is a Databases project for Being Human in STEM initiative at Amherst Colleg
 
 ## How to run
 - Front-end: https://hstem.vercel.app
-- Back-end:
+- Back-end (hasn't been successfully deployed):
   1. Install pipenv
   2. Run:
     ```
